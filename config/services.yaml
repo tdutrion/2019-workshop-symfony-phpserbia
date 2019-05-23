@@ -10,6 +10,8 @@ services:
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        bind:
+            $invoiceForm: '@app.form.invoice'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
@@ -19,9 +21,18 @@ services:
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
-    App\Controller\:
-        resource: '../src/Controller'
+    App\Action\:
+        resource: '../src/Action'
         tags: ['controller.service_arguments']
 
+    app.form.invoice:
+        class: Symfony\Component\Form\FormInterface
+        factory: 'Symfony\Component\Form\FormFactoryInterface:create'
+        arguments: ['App\Form\InvoiceType']
+
+    App\Action\Invoice\Create:
+        tags: ['controller.service_arguments']
+        arguments:
+            $invoiceForm: '@app.form.invoice'
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
