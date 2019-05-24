@@ -6,7 +6,7 @@ namespace App\Action\Invoice;
 
 use App\Entity\Invoice;
 use App\Renderer\TemplateRenderer;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\InvoiceRepository;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,15 +18,15 @@ final class Create
 {
     private $renderer;
     private $invoiceForm;
-    private $entityManager;
     private $router;
+    private $invoiceRepository;
 
-    public function __construct(TemplateRenderer $renderer, FormInterface $invoiceForm, EntityManagerInterface $entityManager, UrlGeneratorInterface $router)
+    public function __construct(TemplateRenderer $renderer, FormInterface $invoiceForm, InvoiceRepository $invoiceRepository, UrlGeneratorInterface $router)
     {
         $this->renderer = $renderer;
         $this->invoiceForm = $invoiceForm;
-        $this->entityManager = $entityManager;
         $this->router = $router;
+        $this->invoiceRepository = $invoiceRepository;
     }
 
     public function handle(Request $request): Response
@@ -36,8 +36,7 @@ final class Create
         $this->invoiceForm->handleRequest($request);
 
         if ($this->invoiceForm->isSubmitted() && $this->invoiceForm->isValid()) {
-            $this->entityManager->persist($invoice);
-            $this->entityManager->flush();
+            $this->invoiceRepository->save($invoice);
 
             return new RedirectResponse($this->router->generate('invoice_index'), Response::HTTP_FOUND);
         }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Action\Invoice;
 
 use App\Entity\Invoice;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\InvoiceRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,22 +15,21 @@ use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
 final class Delete
 {
-    private $entityManager;
     private $router;
     private $csrfTokenManager;
+    private $invoiceRepository;
 
-    public function __construct(EntityManagerInterface $entityManager, UrlGeneratorInterface $router, CsrfTokenManagerInterface $csrfTokenManager)
+    public function __construct(InvoiceRepository $invoiceRepository, UrlGeneratorInterface $router, CsrfTokenManagerInterface $csrfTokenManager)
     {
-        $this->entityManager = $entityManager;
         $this->router = $router;
         $this->csrfTokenManager = $csrfTokenManager;
+        $this->invoiceRepository = $invoiceRepository;
     }
 
     public function handle(Request $request, Invoice $invoice): Response
     {
         if ($this->csrfTokenManager->isTokenValid(new CsrfToken('delete'.$invoice->getId(), $request->request->get('_token')))) {
-            $this->entityManager->remove($invoice);
-            $this->entityManager->flush();
+            $this->invoiceRepository->delete($invoice);
         }
 
         return new RedirectResponse($this->router->generate('invoice_index'), Response::HTTP_FOUND);

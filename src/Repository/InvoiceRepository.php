@@ -1,50 +1,44 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository;
 
 use App\Entity\Invoice;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\ORM\EntityManagerInterface;
 
-/**
- * @method Invoice|null find($id, $lockMode = null, $lockVersion = null)
- * @method Invoice|null findOneBy(array $criteria, array $orderBy = null)
- * @method Invoice[]    findAll()
- * @method Invoice[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
-class InvoiceRepository extends ServiceEntityRepository
+final class InvoiceRepository
 {
-    public function __construct(RegistryInterface $registry)
+    private $entityManager;
+    private $repository;
+
+    public function __construct(EntityManagerInterface $entityManager)
     {
-        parent::__construct($registry, Invoice::class);
+        $this->entityManager = $entityManager;
+        $this->repository = $entityManager->getRepository(Invoice::class);
     }
 
-    // /**
-    //  * @return Invoice[] Returns an array of Invoice objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function find(int $identifier): ?Invoice
     {
-        return $this->createQueryBuilder('i')
-            ->andWhere('i.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('i.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        return $this->entityManager->find($identifier);
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Invoice
+    public function save(?Invoice $invoice = null): void
     {
-        return $this->createQueryBuilder('i')
-            ->andWhere('i.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        if (null !== $invoice) {
+            $this->entityManager->persist($invoice);
+        }
+        $this->entityManager->flush();
     }
-    */
+
+    public function delete(Invoice $invoice): void
+    {
+        $this->entityManager->remove($invoice);
+        $this->entityManager->flush();
+    }
+
+    public function findAll()
+    {
+        return $this->repository->findAll();
+    }
 }
