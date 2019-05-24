@@ -7,7 +7,7 @@ namespace App\Renderer;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
-final class TwigRenderer implements TemplateRenderer
+final class HttpFoundationTwigRenderer implements TemplateRenderer
 {
     private $environment;
 
