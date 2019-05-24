@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Entity;
 
-use App\ValueObject\InvoiceIdentifier;
+use App\Domain\ValueObject\InvoiceIdentifier;
 use Ramsey\Uuid\UuidInterface;
 
 class Invoice

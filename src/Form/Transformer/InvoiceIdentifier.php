@@ -15,7 +15,7 @@ final class InvoiceIdentifier implements DataTransformerInterface
             return '';
         }
 
-        if ($value instanceof \App\ValueObject\InvoiceIdentifier) {
+        if ($value instanceof \App\Domain\ValueObject\InvoiceIdentifier) {
             return $value->asString();
         }
 
@@ -29,7 +29,7 @@ final class InvoiceIdentifier implements DataTransformerInterface
         }
 
         try {
-            return new \App\ValueObject\InvoiceIdentifier($value);
+            return new \App\Domain\ValueObject\InvoiceIdentifier($value);
         } catch (\Throwable $exception) {
             throw new TransformationFailedException('Invalid invoice identifier');
         }

@@ -26,11 +26,11 @@ final class InvoiceIdentifier extends Type
             return null;
         }
 
-        if ($value instanceof \App\ValueObject\InvoiceIdentifier) {
+        if ($value instanceof \App\Domain\ValueObject\InvoiceIdentifier) {
             return $value;
         }
 
-        return new \App\ValueObject\InvoiceIdentifier($value);
+        return new \App\Domain\ValueObject\InvoiceIdentifier($value);
     }
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
@@ -39,7 +39,7 @@ final class InvoiceIdentifier extends Type
             return null;
         }
 
-        if ($value instanceof \App\ValueObject\InvoiceIdentifier) {
+        if ($value instanceof \App\Domain\ValueObject\InvoiceIdentifier) {
             return $value->asString();
         }
 
