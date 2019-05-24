@@ -11,7 +11,6 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 final class Edit
@@ -29,10 +28,7 @@ final class Edit
         $this->router = $router;
     }
 
-    /**
-     * @Route("/invoice/{id}/edit", name="invoice_edit", methods={"GET","POST"})
-     */
-    public function edit(Request $request, Invoice $invoice): Response
+    public function handle(Request $request, Invoice $invoice): Response
     {
         $this->invoiceForm->setData($invoice);
         $this->invoiceForm->handleRequest($request);

@@ -1,3 +1,24 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+invoice_new:
+    methods: GET|POST
+    path: /invoice/new
+    controller: App\Action\Invoice\Create::handle
+
+invoice_delete:
+    methods: DELETE
+    path: /invoice/{id}
+    controller: App\Action\Invoice\Delete::handle
+
+invoice_edit:
+    methods: GET|POST
+    path: /invoice/{id}/edit
+    controller: App\Action\Invoice\Edit::handle
+
+invoice_index:
+    methods: GET
+    path: /invoice
+    controller: App\Action\Invoice\Listing::handle
+
+invoice_show:
+    methods: GET
+    path: /invoice/{id}
+    controller: App\Action\Invoice\Show::handle

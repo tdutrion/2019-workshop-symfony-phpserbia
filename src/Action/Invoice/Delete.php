@@ -9,7 +9,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
@@ -27,10 +26,7 @@ final class Delete
         $this->csrfTokenManager = $csrfTokenManager;
     }
 
-    /**
-     * @Route("/invoice/{id}", name="invoice_delete", methods={"DELETE"})
-     */
-    public function delete(Request $request, Invoice $invoice): Response
+    public function handle(Request $request, Invoice $invoice): Response
     {
         if ($this->csrfTokenManager->isTokenValid(new CsrfToken('delete'.$invoice->getId(), $request->request->get('_token')))) {
             $this->entityManager->remove($invoice);
