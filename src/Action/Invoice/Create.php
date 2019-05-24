@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace App\Action\Invoice;
 
 use App\Entity\Invoice;
-use App\Form\InvoiceType;
-use App\Repository\InvoiceRepository;
+use App\Renderer\TemplateRenderer;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -14,19 +13,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Twig\Environment;
+
 
 final class Create
 {
     private $renderer;
     private $invoiceForm;
     private $entityManager;
-    /**
-     * @var UrlGeneratorInterface
-     */
     private $router;
 
-    public function __construct(Environment $renderer, FormInterface $invoiceForm, EntityManagerInterface $entityManager, UrlGeneratorInterface $router)
+    public function __construct(TemplateRenderer $renderer, FormInterface $invoiceForm, EntityManagerInterface $entityManager, UrlGeneratorInterface $router)
     {
         $this->renderer = $renderer;
         $this->invoiceForm = $invoiceForm;
@@ -50,9 +46,9 @@ final class Create
             return new RedirectResponse($this->router->generate('invoice_index'), Response::HTTP_FOUND);
         }
 
-        return new Response($this->renderer->render('invoice/new.html.twig', [
+        return $this->renderer->renderResponse('invoice/new.html.twig', [
             'invoice' => $invoice,
             'form' => $this->invoiceForm->createView(),
-        ]));
+        ]);
     }
 }
