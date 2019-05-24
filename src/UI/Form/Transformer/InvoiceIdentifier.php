@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\UI\Form\Transformer;
 
+use App\Domain\ValueObject\InvoiceIdentifier as InvoiceIdentifierVO;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
@@ -15,7 +16,7 @@ final class InvoiceIdentifier implements DataTransformerInterface
             return '';
         }
 
-        if ($value instanceof \App\Domain\ValueObject\InvoiceIdentifier) {
+        if ($value instanceof InvoiceIdentifierVO) {
             return $value->asString();
         }
 
@@ -29,7 +30,7 @@ final class InvoiceIdentifier implements DataTransformerInterface
         }
 
         try {
-            return new \App\Domain\ValueObject\InvoiceIdentifier($value);
+            return new InvoiceIdentifierVO($value);
         } catch (\Throwable $exception) {
             throw new TransformationFailedException('Invalid invoice identifier');
         }
