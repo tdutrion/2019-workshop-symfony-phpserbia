@@ -5,24 +5,24 @@ declare(strict_types=1);
 namespace App\Action\Invoice;
 
 use App\Renderer\TemplateRenderer;
-use App\Repository\InvoiceRepository;
+use App\Repository\MultipleInvoiceRetrieval;
 use Psr\Http\Message\ResponseInterface;
 
 final class Listing
 {
     private $renderer;
-    private $invoiceRepository;
+    private $invoices;
 
-    public function __construct(TemplateRenderer $psrRenderer, InvoiceRepository $invoiceRepository)
+    public function __construct(TemplateRenderer $psrRenderer, MultipleInvoiceRetrieval $invoices)
     {
         $this->renderer = $psrRenderer;
-        $this->invoiceRepository = $invoiceRepository;
+        $this->invoices = $invoices;
     }
 
     public function handle(): ResponseInterface
     {
         return $this->renderer->renderResponse('invoice/index.html.twig', [
-            'invoices' => $this->invoiceRepository->findAll(),
+            'invoices' => $this->invoices->findAll(),
         ]);
     }
 }
