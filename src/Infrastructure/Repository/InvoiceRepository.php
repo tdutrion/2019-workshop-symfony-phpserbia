@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace App\Infrastructure\Repository;
 
 use App\Domain\Entity\Invoice;
+use App\Domain\Repository\InvoiceRepository as InvoiceRepositoryInterface;
 use App\Domain\Repository\MultipleInvoiceRetrieval;
 use Doctrine\ORM\EntityManagerInterface;
 
-final class InvoiceRepository implements \App\Domain\Repository\InvoiceRepository
+final class InvoiceRepository implements InvoiceRepositoryInterface
 {
     private $entityManager;
     private $repository;

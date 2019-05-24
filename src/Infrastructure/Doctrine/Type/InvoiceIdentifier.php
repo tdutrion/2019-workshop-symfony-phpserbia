@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Doctrine\Type;
 
+use App\Domain\ValueObject\InvoiceIdentifier as InvoiceIdentifierVO;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\Type;
@@ -26,11 +27,11 @@ final class InvoiceIdentifier extends Type
             return null;
         }
 
-        if ($value instanceof \App\Domain\ValueObject\InvoiceIdentifier) {
+        if ($value instanceof InvoiceIdentifierVO) {
             return $value;
         }
 
-        return new \App\Domain\ValueObject\InvoiceIdentifier($value);
+        return new InvoiceIdentifierVO($value);
     }
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
@@ -39,7 +40,7 @@ final class InvoiceIdentifier extends Type
             return null;
         }
 
-        if ($value instanceof \App\Domain\ValueObject\InvoiceIdentifier) {
+        if ($value instanceof InvoiceIdentifierVO) {
             return $value->asString();
         }
 
