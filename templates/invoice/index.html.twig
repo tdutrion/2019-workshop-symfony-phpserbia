@@ -17,7 +17,7 @@
         {% for invoice in invoices %}
             <tr>
                 <td>{{ invoice.id }}</td>
-                <td>{{ invoice.identifier }}</td>
+                <td>{{ invoice.identifier.asString }}</td>
                 <td>
                     <a href="{{ path('invoice_show', {'id': invoice.id}) }}">show</a>
                     <a href="{{ path('invoice_edit', {'id': invoice.id}) }}">edit</a>

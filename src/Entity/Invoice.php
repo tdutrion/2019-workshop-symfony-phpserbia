@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\ValueObject\InvoiceIdentifier;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 
@@ -23,7 +24,9 @@ class Invoice
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @var InvoiceIdentifier
+     *
+     * @ORM\Column(type="invoice_identifier")
      */
     private $identifier;
 
@@ -32,12 +35,12 @@ class Invoice
         return $this->id;
     }
 
-    public function getIdentifier(): ?int
+    public function getIdentifier(): ?InvoiceIdentifier
     {
         return $this->identifier;
     }
 
-    public function setIdentifier(int $identifier): self
+    public function setIdentifier(InvoiceIdentifier $identifier): self
     {
         $this->identifier = $identifier;
 
