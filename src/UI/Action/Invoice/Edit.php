@@ -6,7 +6,7 @@ namespace App\UI\Action\Invoice;
 
 use App\Domain\Entity\Invoice;
 use App\UI\Renderer\TemplateRenderer;
-use App\Repository\InvoiceRepository;
+use App\Domain\Repository\InvoiceRepository;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;

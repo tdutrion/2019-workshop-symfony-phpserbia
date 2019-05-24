@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Doctrine\Type;
+namespace App\Infrastructure\Doctrine\Type;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;

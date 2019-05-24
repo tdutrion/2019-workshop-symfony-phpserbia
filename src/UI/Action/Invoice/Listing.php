@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\UI\Action\Invoice;
 
 use App\UI\Renderer\TemplateRenderer;
-use App\Repository\MultipleInvoiceRetrieval;
+use App\Domain\Repository\MultipleInvoiceRetrieval;
 use Psr\Http\Message\ResponseInterface;
 
 final class Listing

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\UI\Action\Invoice;
 
 use App\Domain\Entity\Invoice;
-use App\Repository\InvoiceRepository;
+use App\Domain\Repository\InvoiceRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

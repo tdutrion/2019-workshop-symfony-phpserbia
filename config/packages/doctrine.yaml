@@ -17,7 +17,7 @@ doctrine:
 
         url: '%env(resolve:DATABASE_URL)%'
         types:
-            invoice_identifier: App\Doctrine\Type\InvoiceIdentifier
+            invoice_identifier: App\Infrastructure\Doctrine\Type\InvoiceIdentifier
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore
