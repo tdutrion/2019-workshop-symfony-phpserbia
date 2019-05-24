@@ -30,9 +30,5 @@ services:
         factory: 'Symfony\Component\Form\FormFactoryInterface:create'
         arguments: ['App\Form\InvoiceType']
 
-    App\Action\Invoice\Create:
-        tags: ['controller.service_arguments']
-        arguments:
-            $invoiceForm: '@app.form.invoice'
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
