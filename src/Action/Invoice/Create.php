@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Action\Invoice;
 
-use App\Entity\Invoice;
+use App\Domain\Entity\Invoice;
 use App\Renderer\TemplateRenderer;
 use App\Repository\InvoiceRepository;
 use Symfony\Component\Form\FormInterface;

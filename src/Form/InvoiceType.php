@@ -2,14 +2,14 @@
 
 namespace App\Form;
 
-use App\Entity\Invoice;
+use App\Domain\Entity\Invoice;
 use App\Form\Transformer\InvoiceIdentifier;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class InvoiceType extends AbstractType
+final class InvoiceType extends AbstractType
 {
     private $transformer;
 

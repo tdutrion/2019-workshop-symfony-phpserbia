@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repository;
 
-use App\Entity\Invoice;
+use App\Domain\Entity\Invoice;
 use Doctrine\ORM\EntityManagerInterface;
 
 final class InvoiceRepository implements MultipleInvoiceRetrieval
