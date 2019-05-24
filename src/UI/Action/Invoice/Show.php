@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Action\Invoice;
+namespace App\UI\Action\Invoice;
 
 use App\Domain\Entity\Invoice;
-use App\Renderer\TemplateRenderer;
+use App\UI\Renderer\TemplateRenderer;
 use Symfony\Component\HttpFoundation\Response;
 
 final class Show

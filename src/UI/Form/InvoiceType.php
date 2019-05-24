@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Form;
+namespace App\UI\Form;
 
 use App\Domain\Entity\Invoice;
-use App\Form\Transformer\InvoiceIdentifier;
+use App\UI\Form\Transformer\InvoiceIdentifier;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;

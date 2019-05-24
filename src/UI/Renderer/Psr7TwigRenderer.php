@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Renderer;
+namespace App\UI\Renderer;
 
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Psr\Http\Message\ResponseInterface;

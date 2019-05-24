@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Action\Invoice;
+namespace App\UI\Action\Invoice;
 
 use App\Domain\Entity\Invoice;
-use App\Renderer\TemplateRenderer;
+use App\UI\Renderer\TemplateRenderer;
 use App\Repository\InvoiceRepository;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;

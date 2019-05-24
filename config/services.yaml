@@ -12,7 +12,7 @@ services:
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
         bind:
             $invoiceForm: '@app.form.invoice'
-            $psrRenderer: '@App\Renderer\Psr7TwigRenderer'
+            $psrRenderer: '@App\UI\Renderer\Psr7TwigRenderer'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
@@ -22,17 +22,17 @@ services:
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
-    App\Action\:
-        resource: '../src/Action'
+    App\UI\Action\:
+        resource: '../src/UI/Action'
         tags: ['controller.service_arguments']
 
     app.form.invoice:
         class: Symfony\Component\Form\FormInterface
         factory: 'Symfony\Component\Form\FormFactoryInterface:create'
-        arguments: ['App\Form\InvoiceType']
+        arguments: ['App\UI\Form\InvoiceType']
 
-    App\Renderer\TemplateRenderer:
-        alias: App\Renderer\HttpFoundationTwigRenderer
+    App\UI\Renderer\TemplateRenderer:
+        alias: App\UI\Renderer\HttpFoundationTwigRenderer
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

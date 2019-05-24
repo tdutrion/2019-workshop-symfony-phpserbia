@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Action\Invoice;
+namespace App\UI\Action\Invoice;
 
 use App\Domain\Entity\Invoice;
 use App\Repository\InvoiceRepository;
@@ -28,7 +28,7 @@ final class Delete
 
     public function handle(Request $request, Invoice $invoice): Response
     {
-        if ($this->csrfTokenManager->isTokenValid(new CsrfToken('delete'.$invoice->getId(), $request->request->get('_token')))) {
+        if ($this->csrfTokenManager->isTokenValid(new CsrfToken('delete'.$invoice->getId()->toString(), $request->request->get('_token')))) {
             $this->invoiceRepository->delete($invoice);
         }
 

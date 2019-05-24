@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Action\Invoice;
+namespace App\UI\Action\Invoice;
 
-use App\Renderer\TemplateRenderer;
+use App\UI\Renderer\TemplateRenderer;
 use App\Repository\MultipleInvoiceRetrieval;
 use Psr\Http\Message\ResponseInterface;
 
